@@ -1,0 +1,14 @@
+---
+# tasks file for myapache
+- package:
+    name: "httpd"
+    state: present
+- copy:
+    dest: "/var/www/html/index.html"
+    src: "files/index.html"
+  register: x
+- service:
+    name: "httpd"
+    state: restarted
+    enabled: yes
+  when: x.changed == true

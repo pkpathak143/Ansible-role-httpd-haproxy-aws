@@ -1,0 +1,15 @@
+---
+# tasks file for myloadbalancer
+- package:
+    name: "haproxy"
+    state: present
+- template:
+    dest: "/etc/haproxy/haproxy.cfg"
+    src: "templates/haproxy.cfg"
+  register: x
+- service:
+    name: "haproxy"
+    state: restarted
+    enabled: yes
+  when: x.changed == true
+

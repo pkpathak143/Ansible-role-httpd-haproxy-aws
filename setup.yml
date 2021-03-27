@@ -1,0 +1,10 @@
+- name: "for HTTPD"
+  hosts: myWeb
+  roles:
+    - role: "myapache"
+  
+- name: "for HAPROXY"
+  hosts: myLB
+  roles:
+    - role: "myloadbalancer"
+
